@@ -18,13 +18,13 @@ function randomColor(){
 }
 
 let ball = {
-  x: 0,
-  y: 0
+  x: Math.floor(Math.random() * width),
+  y: Math.floor(Math.random() * height)
 }
 
 let mouse = {
-  x: width / 2,
-  y: height / 2,
+  x: ball.x,
+  y: ball.y,
 }
 
 const color = randomColor();
@@ -39,18 +39,17 @@ function drawSphere(){
   context.closePath();
 }
 
-let time = Date.now();
-let fps = 0;
+let interval = 1000;
 
 function render(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  if (Date.now() - time >= 1000){
-    console.log(fps > 60 ? "60" : fps);
+  if (Date.now() - time >= interval){
     time = Date.now();
-    fps = 0;
+    randomPos();
+    if (interval >= 100)
+      interval -= 10;
   }
-    drawSphere();
-    fps++;
+  //context.clearRect(0, 0, canvas.width, canvas.height);
+  drawSphere();
   requestAnimationFrame(render);
 };
 
@@ -58,12 +57,12 @@ function randomPos(){
   mouse.x = Math.floor(Math.random() * width);
   mouse.y = Math.floor(Math.random() * height);
 }
-
-setInterval(randomPos, 200);
-
 // canvas.addEventListener('mousemove', function(event){
 //      mouse.x = event.clientX;
 //      mouse.y = event.clientY;
 // });
 
+let time = Date.now();
+
+//loop();
 render();
