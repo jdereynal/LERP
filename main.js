@@ -42,8 +42,8 @@ function drawSphere(){
 let interval = 1000;
 
 function render(){
-  if (Date.now() - time >= interval){
-    time = Date.now();
+    if (Date.now() - time >= interval){
+      time = Date.now();
     if (interval >= 100)
       interval -= 10;
   }
