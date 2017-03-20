@@ -34,7 +34,7 @@ function drawSphere(){
   ball.x += (mouse.x - ball.x)*0.1;
   ball.y += (mouse.y - ball.y)*0.1;
   context.arc(ball.x, ball.y, 40, 0, 2 * Math.PI, false);
-  context.fillStyle = randomColor();
+  context.fillStyle = color;
   context.fill();
   context.closePath();
 }
@@ -44,11 +44,10 @@ let interval = 1000;
 function render(){
   if (Date.now() - time >= interval){
     time = Date.now();
-    randomPos();
     if (interval >= 100)
       interval -= 10;
   }
-  //context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
   drawSphere();
   requestAnimationFrame(render);
 };
@@ -57,10 +56,10 @@ function randomPos(){
   mouse.x = Math.floor(Math.random() * width);
   mouse.y = Math.floor(Math.random() * height);
 }
-// canvas.addEventListener('mousemove', function(event){
-//      mouse.x = event.clientX;
-//      mouse.y = event.clientY;
-// });
+canvas.addEventListener('mousemove', function(event){
+     mouse.x = event.clientX;
+     mouse.y = event.clientY;
+});
 
 let time = Date.now();
 
