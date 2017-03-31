@@ -31,22 +31,15 @@ const color = randomColor();
 
 function drawSphere(){
   context.beginPath();
-  ball.x += (mouse.x - ball.x)*0.1;
-  ball.y += (mouse.y - ball.y)*0.1;
+  ball.x += (mouse.x - ball.x)*0.08;
+  ball.y += (mouse.y - ball.y)*0.08;
   context.arc(ball.x, ball.y, 40, 0, 2 * Math.PI, false);
   context.fillStyle = color;
   context.fill();
   context.closePath();
 }
 
-let interval = 1000;
-
 function render(){
-    if (Date.now() - time >= interval){
-      time = Date.now();
-    if (interval >= 100)
-      interval -= 10;
-  }
   context.clearRect(0, 0, canvas.width, canvas.height);
   drawSphere();
   requestAnimationFrame(render);
